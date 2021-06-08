@@ -332,7 +332,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let index = indexPath.item
         self.dequeingSection = indexPath.section
-        let cell = self.dataSource!.pagerView(self, cellForItemAt: index)
+        let cell = self.dataSource?.pagerView(self, cellForItemAt: index) ?? UICollectionViewCell()
         return cell
     }
     
