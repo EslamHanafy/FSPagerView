@@ -332,7 +332,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let index = indexPath.item
         self.dequeingSection = indexPath.section
-        let cell = self.dataSource?.pagerView(self, cellForItemAt: index) ?? UICollectionViewCell()
+        let cell = self.dataSource?.pagerView(self, cellForItemAt: index) ?? collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath)
         return cell
     }
     
@@ -562,6 +562,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
         // UICollectionView
         let collectionViewLayout = FSPagerViewLayout()
         let collectionView = FSPagerCollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        collectionView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "default")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.clear
